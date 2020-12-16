@@ -8,7 +8,7 @@ function Layout({ children }: any) {
 
   return (
     <div className={classes.app}>
-      <MainAppBar title="My CMS" setNav={() => {}} />
+      <MainAppBar title="My CMS" />
       <div className={classes.wrap}>
         {children}
       </div>
