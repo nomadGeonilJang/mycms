@@ -10,6 +10,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { useRecoilState } from 'recoil';
+
+import { openNavbar } from 'recoils';
 
 const useStyles = makeStyles({
   list: {
@@ -24,7 +27,7 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function SideBar() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useRecoilState(openNavbar.openNavbarState);
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent,

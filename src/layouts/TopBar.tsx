@@ -9,6 +9,9 @@ import {
 } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { useRecoilState } from 'recoil';
+
+import { openNavbar } from 'recoils';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -67,6 +70,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export default function TopBar() {
   const classes = useStyles();
+  const [open, setOpen] = useRecoilState(openNavbar.openNavbarState);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div className={classes.root}>
@@ -77,6 +85,7 @@ export default function TopBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={handleOpen}
           >
             <MenuIcon />
           </IconButton>
