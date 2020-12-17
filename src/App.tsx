@@ -2,9 +2,9 @@ import React from 'react';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Layout from 'layout/Layout';
-import MainNav from 'layout/MainNav';
-import theme from 'layout/theme';
+import Layout from 'components/layout/Layout';
+import MainNav from 'components/layout/MainNav';
+import theme from 'components/layout/theme';
 import Me from 'pages/post/me/me';
 
 const MENU_POST = [
@@ -35,7 +35,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/login">
-            <div>로그인</div>
+            <div>login</div>
           </Route>
           <Layout>
             <MainNav categories={CATEGORIES} />
