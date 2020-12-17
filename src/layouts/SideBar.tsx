@@ -13,8 +13,11 @@ import { useRecoilState } from 'recoil';
 import {
   Accordion, AccordionSummary, Typography,
 } from '@material-ui/core';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { openNavbar } from 'recoils';
+import { Color } from 'theme/Color';
+import { Margin } from 'theme/Margin';
 
 const useStyles = makeStyles({
   list: {
@@ -24,17 +27,35 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
-const menus = [{ id: 'hello', title: '메인메뉴', links: [{ label: 'hello1', to: '/' }, { label: 'hello2', to: '/' }, { label: 'hello3', to: '/' }] }];
-export default function SideBar() {
+
+type Menu = {
+  id:string;
+  title:string
+  links:{label:string, to:string}[]
+}
+type SideBarProps = {
+  menus:Menu[];
+}
+
+const getMainPath = (path:string) => {
+  if (!path.match(/\/\w+/)) {
+    return 'main';
+  }
+  return path.split('/')[1];
+};
+export default function SideBar({ menus }:SideBarProps) {
   const classes = useStyles();
+  const location = useLocation();
+  const history = useHistory();
+
   const [open, setOpen] = useRecoilState(openNavbar.openNavbarState);
-  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+  const [expanded, setExpanded] = React.useState<string | false>(getMainPath(location.pathname) ?? menus[0].id);
 
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  const toggleDrawer = (
+  const toggleDrawer = (link?:string) => (
     event: React.KeyboardEvent | React.MouseEvent,
   ) => {
     if (
@@ -44,43 +65,42 @@ export default function SideBar() {
     ) {
       return;
     }
+
     setOpen((pre) => !pre);
+    if (link) {
+      history.push(link);
+    }
   };
 
-  const list = () => (
-    <div
-      className={clsx(classes.list)}
-      role="presentation"
-      onKeyDown={toggleDrawer}
-    >
-      <List>
-        {menus.map((item) => (
-          <ListItem key={item.id} style={{ padding: 0 }}>
-            <Accordion style={{ width: '100%' }} square expanded={expanded === item.title} onChange={handleChange(item.title)}>
-              <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" style={{ height: '30px' }}>
-                <Typography>{item.title}</Typography>
-              </AccordionSummary>
-              <List>
-                {item.links.map((link, index) => (
-                  <ListItem button key={link.label} onClick={toggleDrawer}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={link.label} />
-                  </ListItem>
-                ))}
-              </List>
-            </Accordion>
-          </ListItem>
-
-        ))}
-      </List>
-      {/* <Divider /> */}
-    </div>
-  );
   return (
     <div>
       <React.Fragment key="left">
-        <Drawer anchor="left" open={open} onClose={toggleDrawer}>
-          {list()}
+        <Drawer anchor="left" open={open} onClose={toggleDrawer()}>
+          <div
+            className={clsx(classes.list)}
+            role="presentation"
+            onKeyDown={toggleDrawer()}
+          >
+            <List>
+              {menus.map((item) => (
+                <ListItem key={item.id} style={{ padding: 0, marginBottom: Margin.Bottom }}>
+                  <Accordion style={{ width: '100%' }} square expanded={expanded === item.id} onChange={handleChange(item.id)}>
+                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" style={{ backgroundColor: Color.Gray }}>
+                      <Typography>{item.title}</Typography>
+                    </AccordionSummary>
+                    <List>
+                      {item.links.map((link, index) => (
+                        <ListItem button key={link.label} onClick={toggleDrawer(link.to)}>
+                          <ListItemText primary={link.label} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Accordion>
+                </ListItem>
+              ))}
+            </List>
+            {/* <Divider /> */}
+          </div>
         </Drawer>
       </React.Fragment>
     </div>

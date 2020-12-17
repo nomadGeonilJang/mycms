@@ -18,6 +18,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   settings: {
     'import/resolver': {
@@ -54,7 +55,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'max-classes-per-file': 'off',
-    'max-len': 'off',
+    'max-len': ['error', { code: 150 }],
     'no-param-reassign': 'off',
     'no-shadow': 'off',
     'no-undef': 'off',

@@ -12,10 +12,16 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useRecoilState } from 'recoil';
 
 import { openNavbar } from 'recoils';
+import { Color } from 'theme/Color';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     flexGrow: 1,
+
+  },
+  header: {
+    height: '56px',
+    backgroundColor: Color.Green,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -74,7 +80,7 @@ export default function TopBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={classes.header}>
           <IconButton
             edge="start"
             className={classes.menuButton}

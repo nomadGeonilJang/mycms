@@ -5,4 +5,5 @@
 	},
 	"editor.tabSize": 2,
 	"typescript.preferences.importModuleSpecifier": "non-relative",
+
 }
