@@ -11,16 +11,17 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <Layout>
-          <SideBar />
+      <Layout>
+        <SideBar />
+        <Router>
           <Switch>
             <Route path="post">
               <Me />
             </Route>
           </Switch>
-        </Layout>
-      </Router>
+        </Router>
+      </Layout>
+
     </ThemeProvider>
   );
 }

@@ -70,12 +70,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export default function TopBar() {
   const classes = useStyles();
-  const [open, setOpen] = useRecoilState(openNavbar.openNavbarState);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
+  const [_, setOpen] = useRecoilState(openNavbar.openNavbarState);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -85,12 +80,12 @@ export default function TopBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={handleOpen}
+            onClick={() => { setOpen(true); }}
           >
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Recoil Project
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
