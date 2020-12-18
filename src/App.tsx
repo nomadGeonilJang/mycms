@@ -5,6 +5,7 @@ import Layout from 'layouts/Layout';
 import SideBar from 'layouts/SideBar';
 import ToonList from 'pages/toon/list/toon_list';
 import GlobalStyle from 'components/GlobalStyle';
+import Main from 'pages/main/main';
 
 const MENUS = [
   { id: 'main', title: '메인메뉴', links: [{ label: 'hello1', to: '/' }] },
@@ -19,6 +20,9 @@ function App() {
         <Router>
           <SideBar menus={MENUS} />
           <Switch>
+            <Route exact path="/">
+              <Main />
+            </Route>
             <Route path="/toon">
               <ToonList />
             </Route>

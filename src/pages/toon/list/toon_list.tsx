@@ -38,12 +38,11 @@ const Container = styled.div`
   
 
   .panel-container{
-    height:400px;
+    /* height:400px; */
     
 
     &>div{
-      height:400px;
-      
+      height:700px;
     }
   }
 `;
