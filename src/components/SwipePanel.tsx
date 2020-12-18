@@ -1,5 +1,9 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
+import styled from 'styled-components';
+
+import { Margin } from 'theme/Margin';
+import { Padding } from 'theme/Padding';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -13,7 +17,8 @@ export default function SwipePanel(props: TabPanelProps) {
   } = props;
 
   return (
-    <div
+    <Panel
+      className="panel"
       role="tabpanel"
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
@@ -21,10 +26,21 @@ export default function SwipePanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          {children}
-        </Box>
+        <div className="container">
+          { children }
+        </div>
       )}
-    </div>
+    </Panel>
   );
 }
+
+const Panel = styled.div`
+  padding:${Padding.SM};
+
+ .container{
+   display:grid;
+   grid-template-columns:1fr 1fr 1fr;
+   grid-gap:${Margin.SM};
+ }
+  
+`;
