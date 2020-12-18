@@ -5,7 +5,25 @@ import { Color } from 'theme/Color';
 import { Margin } from 'theme/Margin';
 import { Padding } from 'theme/Padding';
 
+const makeWon = (money:number) => money.toLocaleString();
+const make = (number:string | number) => {
+  let target = number;
+  if (typeof target === 'number') {
+    target = String(number);
+  }
+
+  const strList = target.split('');
+  const len = strList.length;
+  for (let i = len; i > 0; i -= 3) {
+    if (i !== len) {
+      strList.splice(i, 0, ',');
+    }
+  }
+  return strList.join('');
+};
+
 function Main() {
+  console.log(make(100000));
   return (
     <MainSection>
       <aside>
@@ -16,7 +34,7 @@ function Main() {
           </div>
           <div className="point">
             <dt>my point</dt>
-            <dd>1,000,000 원</dd>
+            <dd>{makeWon(1000000)} 원</dd>
           </div>
           <div className="control">
             <span>충전</span>
@@ -34,7 +52,14 @@ function Main() {
           </a>
         </div>
         <div className="money-setting">
-          3
+          <ul>
+            <li><a href="#1">1</a></li>
+            <li><a href="#1">2</a></li>
+            <li><a href="#1">3</a></li>
+            <li><a href="#1">4</a></li>
+            <li><a href="#1">5</a></li>
+            <li><a href="#1">6</a></li>
+          </ul>
         </div>
       </aside>
       <article>content</article>
@@ -167,6 +192,10 @@ const MainSection = styled.section`
       color:${Color.White};
       letter-spacing:-0.1px;
     }
+  }
+
+  .money-setting{
+    
   }
 `;
 

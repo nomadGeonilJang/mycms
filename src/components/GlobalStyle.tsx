@@ -30,4 +30,9 @@ html,body,#root{
   height: 100%;
   overflow: hidden;
 }
+
+a{
+  text-decoration:none;
+  color:white;
+}
 `;
