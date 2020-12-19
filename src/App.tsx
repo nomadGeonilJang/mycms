@@ -20,11 +20,11 @@ function App() {
         <Router>
           <SideBar menus={MENUS} />
           <Switch>
-            <Route exact path="/">
-              <Main />
-            </Route>
             <Route path="/toon">
               <ToonList />
+            </Route>
+            <Route path={['/', '/money']}>
+              <Main />
             </Route>
           </Switch>
         </Router>
