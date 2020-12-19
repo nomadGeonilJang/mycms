@@ -1,5 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import {
+  AiOutlineBell,
+  AiFillLock, AiFillSetting, AiFillCreditCard, AiFillAccountBook, AiFillSecurityScan, AiOutlineFieldTime,
+} from 'react-icons/ai';
 
 import { Color } from 'theme/Color';
 import { Margin } from 'theme/Margin';
@@ -53,12 +58,54 @@ function Main() {
         </div>
         <div className="money-setting">
           <ul>
-            <li><a href="#1">1</a></li>
-            <li><a href="#1">2</a></li>
-            <li><a href="#1">3</a></li>
-            <li><a href="#1">4</a></li>
-            <li><a href="#1">5</a></li>
-            <li><a href="#1">6</a></li>
+            <li>
+              <a href="#1">
+                <span><AiFillSetting /></span>
+                <span>기본 설정</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span><AiOutlineBell /></span>
+                <span>알림수신 설정</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span>  <AiFillCreditCard /></span>
+                <span>카드관리</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span>  <AiFillAccountBook /></span>
+                <span>계좌 관리</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span>  <AiFillLock /></span>
+                <span>비밀번호</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span>  <FaMapMarkerAlt /></span>
+                <span>배송지 관리</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span> <AiFillSecurityScan /></span>
+                <span>보안설정</span>
+              </a>
+            </li>
+            <li>
+              <a href="#1">
+                <span>  <AiOutlineFieldTime /></span>
+                <span>정기/예약 결제</span>
+              </a>
+            </li>
           </ul>
         </div>
       </aside>
@@ -195,7 +242,53 @@ const MainSection = styled.section`
   }
 
   .money-setting{
-    
+    ul{
+      background-color:gray;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:repeat(4, 1fr);
+      grid-gap:1px;
+
+      li{
+        
+        width:100%;
+        height:90px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        a{  
+          border:1px solid ${Color.DarkGrapText};
+          width:100%;
+          height:100%;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items:center;
+
+          
+          span:first-child{
+            display:flex;
+            width:50px;
+            height:50px;
+            font-size:1.5rem;
+            background-color:${Color.IconGray};
+            justify-content:center;
+            align-items:center;
+            margin-bottom:${Margin.Bottom};
+            border-radius:50%;
+            transition:transform 0.3s ease-in;
+          }
+
+          span:first-child:hover{
+            transform:scale(1.1);
+          }
+          span{
+            font-size:0.8rem;
+          }
+        }
+      }
+    }
   }
 `;
 
