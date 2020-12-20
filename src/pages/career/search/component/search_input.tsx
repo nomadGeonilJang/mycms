@@ -4,11 +4,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import {
   AutoComplete, Input, Space, Typography,
 } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import { RootReducer } from 'pages/career/store';
-import { actions } from 'pages/career/store/reducer';
+import { actions } from 'pages/career/store/reducers/searchReducer';
+import { userActions } from 'pages/career/store/reducers/userReducer';
 
 function SearchInput() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const keyword = useSelector((state:RootReducer) => state.search.keyword);
   const autoCompletes = useSelector((state:RootReducer) => state.search.autoCompletes);
@@ -19,7 +22,15 @@ function SearchInput() {
       dispatch(actions.fetchAutoComplete(value));
     }
   };
-  const goToUser = (value:any) => {};
+  const goToUser = (value:any) => {
+    console.log(value);
+    const user = autoCompletes.find((user) => user.name === value);
+
+    if (user) {
+      dispatch(userActions.setUser(user));
+      history.push(`/user/${user.name}`);
+    }
+  };
 
   return (
     <AutoComplete
@@ -28,7 +39,7 @@ function SearchInput() {
       onSelect={goToUser}
       style={{ width: '100%' }}
       options={autoCompletes.map((item:any) => ({
-        value: item.normalize,
+        value: item.name,
         label: (
           <Space>
             <Typography.Text strong>{item.name}</Typography.Text>

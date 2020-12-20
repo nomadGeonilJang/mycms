@@ -2,23 +2,25 @@ import {
   takeEvery, all, call, put,
 } from 'redux-saga/effects';
 
-import { actions, Types } from 'pages/career/store/reducer';
+import { userActions, Types } from 'pages/career/store/reducers/userReducer';
 import { callApi } from 'util/fetch';
+import { User } from 'pages/career/store/reducers/searchReducer';
 
-function* fetchAutoComplete({ payload }:any) {
+function* fetchUser({ payload }:any) {
   const { isSuccess, data } = yield call(callApi, {
     url: 'user/search',
     params: { keyword: payload },
   });
 
   if (isSuccess && data) {
-    yield put(actions.setAutoComplete(data));
+    const user = data.find((item:User) => item.name === payload);
+    yield put(userActions.setUser(user));
   }
 }
 
 // eslint-disable-next-line func-names
 export default function* () {
   yield all([
-    takeEvery(Types.FetchAutoComplete, fetchAutoComplete),
+    takeEvery(Types.FetchUser, fetchUser),
   ]);
 }

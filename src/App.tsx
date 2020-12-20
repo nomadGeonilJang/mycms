@@ -10,11 +10,12 @@ import GlobalStyle from 'components/GlobalStyle';
 import Main from 'pages/main/main';
 import Search from 'pages/career/search/search';
 import store from 'pages/career/store';
+import User from 'pages/career/user/user';
 
 const MENUS = [
   { id: 'main', title: '메인메뉴', links: [{ label: 'hello1', to: '/' }] },
   { id: 'todo', title: 'Toon List', links: [{ label: 'Toon List', to: '/toon' }, { label: 'Toon Add', to: '/toon/add' }] },
-  { id: 'career', title: '담당자', links: [{ label: '담당자', to: '/career' }] },
+  { id: 'career', title: '담당자', links: [{ label: '검색', to: '/career' }, { label: '담당자', to: '/user' }] },
 ];
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/career">
               <Search />
+            </Route>
+            <Route path="/user/:name">
+              <User />
             </Route>
             <Route path={['/', '/money']}>
               <Main />
