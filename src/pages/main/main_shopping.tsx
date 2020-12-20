@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GrDeliver } from 'react-icons/gr';
 import { RiInboxArchiveFill } from 'react-icons/ri';
 import { GiReturnArrow } from 'react-icons/gi';
 import { AiOutlineCar } from 'react-icons/ai';
@@ -21,7 +20,6 @@ function MainShopping() {
             <span className="title">배송완료</span>
             <span className="icon"><RiInboxArchiveFill /></span>
             <span className="cnt">0</span>
-
           </div>
           <div className="item">
             <span className="title">뱅송중</span>
@@ -45,12 +43,13 @@ const Container = styled.section`
     display:grid;
     grid-template-columns:repeat(5, 1fr);
     grid-template-rows:repeat(5,1fr);
+    background-color:#edeff2;
   
   .shopping-info{
     grid-column:1/4;
     grid-row:1/4;
-    border-left:1px solid ${Color.DarkGrapText};
-    background-color:${Color.Gray};
+    border-left:1px solid #dadddf;;
+    background-color:#edeff2;
 
     display:flex;
     flex-direction:column;
@@ -118,9 +117,8 @@ const Container = styled.section`
   .advertisment{
     grid-column:4/6;
     grid-row:1/4;
-    border-right:1px solid ${Color.DarkGrapText};
-    border-left:1px solid ${Color.DarkGrapText};
-    background-color:${Color.Gray};
+    border-right:1px solid #dadddf;;
+    border-left:1px solid #dadddf;;
 
     img{
       display:block;
@@ -129,8 +127,7 @@ const Container = styled.section`
   .search{
     grid-column:1/6;
     grid-row:4/5;
-    border:1px solid ${Color.DarkGrapText};
-    background-color:${Color.Gray};
+    border:1px solid #dadddf;;
   }
 `;
 

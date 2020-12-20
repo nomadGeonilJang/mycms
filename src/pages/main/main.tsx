@@ -32,7 +32,7 @@ function Main() {
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          {TabMenus.map((tab) => <Tab label={tab.label} />)}
+          {TabMenus.map((tab) => <Tab key={tab.id} label={tab.label} />)}
         </Tabs>
         <Switch>
           <Route path="/money/shopping">
