@@ -1,13 +1,15 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import 'antd/dist/antd.css';
 
+import 'antd/dist/antd.css';
 import Layout from 'layouts/Layout';
 import SideBar from 'layouts/SideBar';
 import ToonList from 'pages/toon/list/toon_list';
 import GlobalStyle from 'components/GlobalStyle';
 import Main from 'pages/main/main';
 import Search from 'pages/career/search/search';
+import store from 'pages/career/store';
 
 const MENUS = [
   { id: 'main', title: '메인메뉴', links: [{ label: 'hello1', to: '/' }] },
@@ -17,7 +19,7 @@ const MENUS = [
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
       <Layout>
         <Router>
@@ -35,7 +37,7 @@ function App() {
           </Switch>
         </Router>
       </Layout>
-    </>
+    </Provider>
   );
 }
 
