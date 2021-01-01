@@ -34,10 +34,12 @@ function User() {
               <Descriptions.Item label="태그">
                 {user.tag}
               </Descriptions.Item>
-              <Descriptions.Item label="수정내역">
-                수정내역
-              </Descriptions.Item>
             </Descriptions>
+          )}
+          {!user && (
+            <Descriptions.Item label="수정내역">
+              존재하지 않는 사용자 입니다.
+            </Descriptions.Item>
           )}
         </PageHeader>
       </Col>
